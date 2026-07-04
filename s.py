@@ -379,14 +379,13 @@ class NoiTuSelfbot:
 # Entry point
 # ---------------------------------------------------------------------------
 
-if __name__ == "__main__":
+async def main():
     bot = NoiTuSelfbot()
-    asyncio.run(bot.load_words())
+    await bot.load_words()
 
-    # Graceful shutdown on SIGINT / SIGTERM
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
 
-    def _shutdown(sig, frame):  # noqa: ANN001
+    def _shutdown(sig, frame):
         log.info("Received %s, shutting down...", signal.Signals(sig).name)
         loop.create_task(bot.client.close())
 
@@ -395,8 +394,12 @@ if __name__ == "__main__":
 
     try:
         log.info("Starting bot...")
-        bot.client.run(bot.token)
+        await bot.client.start(bot.token)
     except discord.LoginFailure:
         log.error("Invalid token -- fix your .env")
     except Exception:
-        log.exception("Bot crashed")   # prints full traceback, not just the message
+        log.exception("Bot crashed")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
