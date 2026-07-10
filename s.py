@@ -39,12 +39,12 @@ DISCORD_TOKEN         = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID_RAW        = os.getenv("CHANNEL_ID")
 GAME_MASTER_BOT_ID    = int(os.getenv("GAME_MASTER_BOT_ID", "1103932552701550622"))
 REQUIRED_REACTIONS    = int(os.getenv("REQUIRED_REACTIONS", "2"))
-MIN_SEND_INTERVAL     = int(os.getenv("MIN_SEND_INTERVAL", "130"))
+MIN_SEND_INTERVAL     = int(os.getenv("MIN_SEND_INTERVAL", "125"))
 # How many recently-used words to remember before allowing repeats
 USED_WORDS_MAXLEN     = int(os.getenv("USED_WORDS_MAXLEN", "500"))
 # How many recent messages to re-scan right before sending (triple-check).
 # Default is 1 -- just the single latest channel message.
-TRIPLE_CHECK_HISTORY_LIMIT = int(os.getenv("TRIPLE_CHECK_HISTORY_LIMIT", "2"))
+TRIPLE_CHECK_HISTORY_LIMIT = int(os.getenv("TRIPLE_CHECK_HISTORY_LIMIT", "3"))
 
 WORDS_FILE = "vietnamese_words.txt"
 LOG_FILE   = "channel_messages.log"
